@@ -60,6 +60,7 @@ class NotesList extends StatelessWidget {
                             label: "Delete",
                             backgroundColor: Colors.red,
                             icon: Icons.delete,
+                            borderRadius: BorderRadius.circular(8),
                             onPressed: (BuildContext context) {
                               _deleteNote(context, note);
                             },

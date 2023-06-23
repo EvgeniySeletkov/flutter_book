@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_book/appointments/Appointments.dart';
 import 'package:flutter_book/notes/Notes.dart';
 import 'package:flutter_book/tasks/Tasks.dart';
 import 'package:path_provider/path_provider.dart';
@@ -21,7 +22,7 @@ class FlutterBook extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: DefaultTabController(
-        length: 2,
+        length: 3,
         child: GestureDetector(
           onTap: () {
             FocusScope.of(context).requestFocus(FocusNode());
@@ -33,10 +34,10 @@ class FlutterBook extends StatelessWidget {
               title: Text("FlutterBook"),
               bottom: TabBar(
                 tabs: [
-                  // Tab(
-                  //   icon: Icon(Icons.date_range),
-                  //   text: "Appointments",
-                  // ),
+                  Tab(
+                    icon: Icon(Icons.date_range),
+                    text: "Appointments",
+                  ),
                   // Tab(
                   //   icon: Icon(Icons.contacts),
                   //   text: "Contacts",
@@ -55,6 +56,7 @@ class FlutterBook extends StatelessWidget {
 
             body: TabBarView(
               children: [
+                Appointments(),
                 Notes(),
                 Tasks(),
               ],
