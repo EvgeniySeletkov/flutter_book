@@ -10,10 +10,10 @@ class NotesEntry extends StatelessWidget {
 
   NotesEntry() {
     _titleEditingController.addListener(() {
-      notesModel.entityBeingEdited.title = _titleEditingController.text;
+      notesModel.entityBeingEdited!.title = _titleEditingController.text;
     });
     _contentEditingController.addListener(() {
-      notesModel.entityBeingEdited.content = _contentEditingController.text;
+      notesModel.entityBeingEdited!.content = _contentEditingController.text;
     });
   }
 
@@ -75,7 +75,7 @@ class NotesEntry extends StatelessWidget {
                               ),
                             ),
                             onTap: () {
-                              notesModel.entityBeingEdited.color = "red";
+                              notesModel.entityBeingEdited!.color = "red";
                               notesModel.setColor("red");
                             },
                           ),
@@ -94,7 +94,7 @@ class NotesEntry extends StatelessWidget {
                               ),
                             ),
                             onTap: () {
-                              notesModel.entityBeingEdited.color = "green";
+                              notesModel.entityBeingEdited!.color = "green";
                               notesModel.setColor("green");
                             },
                           ),
@@ -113,7 +113,7 @@ class NotesEntry extends StatelessWidget {
                               ),
                             ),
                             onTap: () {
-                              notesModel.entityBeingEdited.color = "blue";
+                              notesModel.entityBeingEdited!.color = "blue";
                               notesModel.setColor("blue");
                             },
                           ),
@@ -132,7 +132,7 @@ class NotesEntry extends StatelessWidget {
                               ),
                             ),
                             onTap: () {
-                              notesModel.entityBeingEdited.color = "yellow";
+                              notesModel.entityBeingEdited!.color = "yellow";
                               notesModel.setColor("yellow");
                             },
                           ),
@@ -151,7 +151,7 @@ class NotesEntry extends StatelessWidget {
                               ),
                             ),
                             onTap: () {
-                              notesModel.entityBeingEdited.color = "grey";
+                              notesModel.entityBeingEdited!.color = "grey";
                               notesModel.setColor("grey");
                             },
                           ),
@@ -170,7 +170,7 @@ class NotesEntry extends StatelessWidget {
                               ),
                             ),
                             onTap: () {
-                              notesModel.entityBeingEdited.color = "purple";
+                              notesModel.entityBeingEdited!.color = "purple";
                               notesModel.setColor("purple");
                             },
                           ),
@@ -214,11 +214,11 @@ class NotesEntry extends StatelessWidget {
     if (!_formKey.currentState!.validate()){
       return;
     }
-    if (model.entityBeingEdited.id == null) {
-      await NotesDBWorker.db.create(notesModel.entityBeingEdited);
+    if (model.entityBeingEdited!.id == null) {
+      await NotesDBWorker.db.create(notesModel.entityBeingEdited!);
     }
     else {
-      await NotesDBWorker.db.update(notesModel.entityBeingEdited);
+      await NotesDBWorker.db.update(notesModel.entityBeingEdited!);
     }
 
     notesModel.loadData("notes", NotesDBWorker.db);

@@ -13,7 +13,7 @@ class Note {
   }
 }
 
-class NotesModel extends BaseModel {
+class NotesModel extends BaseModel<Note> {
   String? color;
 
   void setColor(String? inColor) {

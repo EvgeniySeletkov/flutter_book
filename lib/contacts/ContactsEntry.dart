@@ -15,21 +15,21 @@ class ContactsEntry extends StatelessWidget {
 
   ContactsEntry() {
     _nameEditingController.addListener(() {
-      contactsModel.entityBeingEdited.name = _nameEditingController.text;
+      contactsModel.entityBeingEdited!.name = _nameEditingController.text;
     });
     _phoneEditingController.addListener(() {
-      contactsModel.entityBeingEdited.phone = _phoneEditingController.text;
+      contactsModel.entityBeingEdited!.phone = _phoneEditingController.text;
     });
     _emailEditingController.addListener(() {
-      contactsModel.entityBeingEdited.email = _emailEditingController.text;
+      contactsModel.entityBeingEdited!.email = _emailEditingController.text;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    _nameEditingController.text = contactsModel.entityBeingEdited.name ?? "";
-    _phoneEditingController.text = contactsModel.entityBeingEdited.phone ?? "";
-    _emailEditingController.text = contactsModel.entityBeingEdited.email ?? "";
+    _nameEditingController.text = contactsModel.entityBeingEdited?.name ?? "";
+    _phoneEditingController.text = contactsModel.entityBeingEdited?.phone ?? "";
+    _emailEditingController.text = contactsModel.entityBeingEdited?.email ?? "";
 
     return ScopedModel(
       model: contactsModel,
@@ -38,9 +38,9 @@ class ContactsEntry extends StatelessWidget {
           var avatarFile = File(join(utils.docDir!.path, "avatar"));
           if (!avatarFile.existsSync()
             && model.entityBeingEdited != null
-            && model.entityBeingEdited.id != null
+            && model.entityBeingEdited!.id != null
           ) {
-            avatarFile = File(join(utils.docDir!.path, model.entityBeingEdited.id.toString()));
+            avatarFile = File(join(utils.docDir!.path, model.entityBeingEdited!.id.toString()));
           }
           return Scaffold(
             body: Form(
@@ -101,9 +101,9 @@ class ContactsEntry extends StatelessWidget {
                         var chosenDate = await utils.selectDate(
                             context,
                             contactsModel,
-                            contactsModel.entityBeingEdited.birthday);
+                            contactsModel.entityBeingEdited!.birthday);
                         if (chosenDate != null) {
-                          contactsModel.entityBeingEdited.birthday = chosenDate;
+                          contactsModel.entityBeingEdited!.birthday = chosenDate;
                         }
                       },
                     ),
@@ -150,11 +150,11 @@ class ContactsEntry extends StatelessWidget {
       return;
     }
     int? id;
-    if (model.entityBeingEdited.id == null) {
-      id = await ContactsDBWorker.db.create(contactsModel.entityBeingEdited);
+    if (model.entityBeingEdited!.id == null) {
+      id = await ContactsDBWorker.db.create(contactsModel.entityBeingEdited!);
     }
     else {
-      id = await ContactsDBWorker.db.update(contactsModel.entityBeingEdited);
+      id = await ContactsDBWorker.db.update(contactsModel.entityBeingEdited!);
     }
     
     var avatarFile = File(join(utils.docDir!.path, "avatar"));

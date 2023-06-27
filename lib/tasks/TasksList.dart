@@ -93,7 +93,7 @@ class TasksList extends StatelessWidget {
                           return;
                         }
                         tasksModel.entityBeingEdited = await TasksDBWorker.db.get(task.id!);
-                        if (tasksModel.entityBeingEdited.dueDate == null) {
+                        if (tasksModel.entityBeingEdited!.dueDate == null) {
                           tasksModel.setChosenDate(null);
                         }
                         else {

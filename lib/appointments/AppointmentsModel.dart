@@ -15,7 +15,7 @@ class Appointment {
   }
 }
 
-class AppointmentsModel extends BaseModel {
+class AppointmentsModel extends BaseModel<Appointment> {
   String? apptTime;
 
   void setApptTime(String? inApptTime) {

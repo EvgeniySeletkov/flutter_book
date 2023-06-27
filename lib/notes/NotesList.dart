@@ -75,7 +75,7 @@ class NotesList extends StatelessWidget {
                           subtitle: Text("${note.content}"),
                           onTap: () async {
                             notesModel.entityBeingEdited = await NotesDBWorker.db.get(note.id!);
-                            notesModel.setColor(notesModel.entityBeingEdited.color);
+                            notesModel.setColor(notesModel.entityBeingEdited!.color);
                             notesModel.setStackIndex(1);
                           },
                         ),

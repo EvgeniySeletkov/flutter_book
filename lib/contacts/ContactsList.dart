@@ -75,11 +75,11 @@ class ContactsList extends StatelessWidget {
                             avatarFile.deleteSync();
                           }
                           contactsModel.entityBeingEdited = await ContactsDBWorker.db.get(contact.id!);
-                          if (contactsModel.entityBeingEdited.birthday == null) {
+                          if (contactsModel.entityBeingEdited!.birthday == null) {
                             contactsModel.setChosenDate(null);
                           }
                           else {
-                            List dateParts = contactsModel.entityBeingEdited.birthday.split(",");
+                            List dateParts = contactsModel.entityBeingEdited!.birthday!.split(",");
                             var birthday = DateTime(
                               int.parse(dateParts[0]),
                               int.parse(dateParts[1]),

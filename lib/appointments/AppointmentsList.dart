@@ -48,7 +48,7 @@ class AppointmentsList extends StatelessWidget {
               onPressed: () async {
                 appointmentsModel.entityBeingEdited = Appointment();
                 var now = DateTime.now();
-                appointmentsModel.entityBeingEdited.apptDate =
+                appointmentsModel.entityBeingEdited!.apptDate =
                     "${now.year},${now.month},${now.day}";
                 appointmentsModel.setChosenDate(
                   DateFormat.yMMMMd("en_US")
@@ -207,11 +207,11 @@ class AppointmentsList extends StatelessWidget {
 
   Future _editAppointment(BuildContext context, Appointment appointment) async {
     appointmentsModel.entityBeingEdited = await AppointmentsDBWorker.db.get(appointment.id!);
-    if (appointmentsModel.entityBeingEdited.apptDate == null) {
+    if (appointmentsModel.entityBeingEdited!.apptDate == null) {
       appointmentsModel.setChosenDate(null);
     }
     else {
-      List dateParts = appointmentsModel.entityBeingEdited.apptDate.split(",");
+      List dateParts = appointmentsModel.entityBeingEdited!.apptDate!.split(",");
       var apptDate = DateTime(
         int.parse(dateParts[0]),
         int.parse(dateParts[1]),
@@ -219,11 +219,11 @@ class AppointmentsList extends StatelessWidget {
       );
       appointmentsModel.setChosenDate(
         DateFormat.yMMMMd("en_US").format(apptDate.toLocal()));
-      if (appointmentsModel.entityBeingEdited.apptTime == null) {
+      if (appointmentsModel.entityBeingEdited!.apptTime == null) {
         appointmentsModel.setApptTime(null);
       }
       else {
-        List timeApparts = appointmentsModel.entityBeingEdited.apptTime.split(",");
+        List timeApparts = appointmentsModel.entityBeingEdited!.apptTime!.split(",");
         var apptTime = TimeOfDay(
           hour: int.parse(timeApparts[0]),
           minute: int.parse(timeApparts[1])

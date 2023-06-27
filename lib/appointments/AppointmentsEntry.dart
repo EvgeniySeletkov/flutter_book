@@ -13,11 +13,11 @@ class AppointmentsEntry extends StatelessWidget {
 
   AppointmentsEntry() {
     _titleEditingController.addListener(() {
-      appointmentsModel.entityBeingEdited.title = _titleEditingController.text;
+      appointmentsModel.entityBeingEdited!.title = _titleEditingController.text;
     });
 
     _descriptionEditingController.addListener(() {
-      appointmentsModel.entityBeingEdited.description = _descriptionEditingController.text;
+      appointmentsModel.entityBeingEdited!.description = _descriptionEditingController.text;
     });
   }
 
@@ -52,7 +52,7 @@ class AppointmentsEntry extends StatelessWidget {
                     title: TextFormField(
                       keyboardType: TextInputType.multiline,
                       maxLines: 4,
-                      decoration: InputDecoration(hintText: "Decoration"),
+                      decoration: InputDecoration(hintText: "Description"),
                       controller: _descriptionEditingController,
                     ),
                   ),
@@ -70,9 +70,9 @@ class AppointmentsEntry extends StatelessWidget {
                         String? chosenDate = await utils.selectDate(
                           context,
                           appointmentsModel,
-                          appointmentsModel.entityBeingEdited.apptDate);
+                          appointmentsModel.entityBeingEdited!.apptDate);
                         if (chosenDate != null) {
-                          appointmentsModel.entityBeingEdited.apptDate = chosenDate;
+                          appointmentsModel.entityBeingEdited!.apptDate = chosenDate;
                         }
                       },
                     ),
@@ -128,8 +128,8 @@ class AppointmentsEntry extends StatelessWidget {
 
   Future _selectTime(BuildContext context) async {
     var initialTime = TimeOfDay.now();
-    if (appointmentsModel.entityBeingEdited.apptTime != null) {
-       List timeParts = appointmentsModel.entityBeingEdited.apptTime.split(",");
+    if (appointmentsModel.entityBeingEdited!.apptTime != null) {
+       List timeParts = appointmentsModel.entityBeingEdited!.apptTime!.split(",");
        initialTime = TimeOfDay(
          hour: int.parse(timeParts[0]),
          minute: int.parse(timeParts[1]),
@@ -140,7 +140,7 @@ class AppointmentsEntry extends StatelessWidget {
       initialTime: initialTime
     );
     if (picked != null) {
-      appointmentsModel.entityBeingEdited.apptTime =
+      appointmentsModel.entityBeingEdited!.apptTime =
           "${picked.hour},${picked.minute}";
       appointmentsModel.setApptTime(picked.format(context));
     }
@@ -150,11 +150,11 @@ class AppointmentsEntry extends StatelessWidget {
     if (!_formKey.currentState!.validate()){
       return;
     }
-    if (model.entityBeingEdited.id == null) {
-      await AppointmentsDBWorker.db.create(appointmentsModel.entityBeingEdited);
+    if (model.entityBeingEdited!.id == null) {
+      await AppointmentsDBWorker.db.create(appointmentsModel.entityBeingEdited!);
     }
     else {
-      await AppointmentsDBWorker.db.update(appointmentsModel.entityBeingEdited);
+      await AppointmentsDBWorker.db.update(appointmentsModel.entityBeingEdited!);
     }
 
     appointmentsModel.loadData("appointments", AppointmentsDBWorker.db);

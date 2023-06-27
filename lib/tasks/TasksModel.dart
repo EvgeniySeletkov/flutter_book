@@ -13,6 +13,6 @@ class Task {
   }
 }
 
-class TasksModel extends BaseModel { }
+class TasksModel extends BaseModel<Task> { }
 
 var tasksModel = TasksModel();

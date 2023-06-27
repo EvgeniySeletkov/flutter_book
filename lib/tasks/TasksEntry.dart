@@ -10,7 +10,7 @@ class TasksEntry extends StatelessWidget {
 
   TasksEntry() {
     _descriptionEditingController.addListener(() {
-      tasksModel.entityBeingEdited.description = _descriptionEditingController.text;
+      tasksModel.entityBeingEdited!.description = _descriptionEditingController.text;
     });
   }
 
@@ -53,9 +53,9 @@ class TasksEntry extends StatelessWidget {
                           String? chosenDate = await utils.selectDate(
                               context,
                               tasksModel,
-                              tasksModel.entityBeingEdited.dueDate);
+                              tasksModel.entityBeingEdited!.dueDate);
                           if (chosenDate != null) {
-                            tasksModel.entityBeingEdited.dueDate = chosenDate;
+                            tasksModel.entityBeingEdited!.dueDate = chosenDate;
                           }
                         },
                       ),
@@ -97,11 +97,11 @@ class TasksEntry extends StatelessWidget {
     if (!_formKey.currentState!.validate()){
       return;
     }
-    if (model.entityBeingEdited.id == null) {
-      await TasksDBWorker.db.create(tasksModel.entityBeingEdited);
+    if (model.entityBeingEdited!.id == null) {
+      await TasksDBWorker.db.create(tasksModel.entityBeingEdited!);
     }
     else {
-      await TasksDBWorker.db.update(tasksModel.entityBeingEdited);
+      await TasksDBWorker.db.update(tasksModel.entityBeingEdited!);
     }
 
     tasksModel.loadData("tasks", TasksDBWorker.db);

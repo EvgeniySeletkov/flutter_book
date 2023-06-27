@@ -1,9 +1,9 @@
 import 'package:scoped_model/scoped_model.dart';
 
-class BaseModel extends Model {
+class BaseModel<T> extends Model {
   int stackIndex = 0;
   List entityList = [];
-  var entityBeingEdited;
+  T? entityBeingEdited;
   String? chosenDate;
 
   void setChosenDate(String? inDate) {

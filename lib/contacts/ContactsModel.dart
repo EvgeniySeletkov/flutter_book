@@ -15,7 +15,7 @@ class Contact {
   }
 }
 
-class ContactsModel extends BaseModel {
+class ContactsModel extends BaseModel<Contact> {
   void triggerRebuild() {
     notifyListeners();
   }
